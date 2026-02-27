@@ -17,7 +17,7 @@
     "baselBlock": {
       "block": 27929040,
       "superNode": "0x854232359862009Ecd1df41c90D97E296AB295A3",
-      "superNodeOwner": "0xafa34af3e9a2af71c5b1c6ec7c7df4d371b0a858",
+      "superNodeOwner": "0xAfa34AF3E9a2af71C5B1c6Ec7c7Df4d371B0A858",
       "period": 3
     },
     "clique": {
