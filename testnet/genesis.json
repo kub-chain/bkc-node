@@ -14,6 +14,12 @@
     "chaophrayaBlock": 11366422,
     "chaophrayaBangkokBlock": 11730740,
     "lausanneBlock": 22835041,
+    "baselBlock": {
+      "block": 27929040,
+      "superNode": "0x854232359862009Ecd1df41c90D97E296AB295A3",
+      "superNodeOwner": "0xafa34af3e9a2af71c5b1c6ec7c7df4d371b0a858",
+      "period": 3
+    },
     "clique": {
       "span": 50,
       "period": 5,
