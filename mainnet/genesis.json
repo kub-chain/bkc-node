@@ -13,6 +13,12 @@
     "erawanBlock": 5519559,
     "chaophrayaBlock": 14220246,
     "lausanneBlock": 25677934,
+    "baselBlock": {
+      "block": 31237946,
+      "superNode": "0xcf723fE5a8118efE70D3fAdd56C5e6D01aDeC7A3",
+      "superNodeOwner": "0x5106ffca7cC44E6cFfEE9bD016A0934130b0322f",
+      "period": 3
+    },
     "clique": {
       "span": 50,
       "period": 5,
