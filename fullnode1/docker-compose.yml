@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  bkc-fullnode1:
+    image: ethereum/client-go:latest
+    container_name: bkc-fullnode1
+    restart: unless-stopped
+    user: "1000:1000"
+
+    volumes:
+      - bkc-data:/data
+      - ../mainnet/genesis.json:/config/genesis.json:ro
+      - ../mainnet/config.toml:/config/config.toml:ro
+      - ./init-genesis.sh:/init-genesis.sh:ro
+
+    ports:
+      - "8545:8545"    # JSON-RPC HTTP
+      - "8546:8546"    # JSON-RPC WebSocket
+      - "30303:30303"  # P2P TCP
+      - "30303:30303/udp"  # P2P UDP
+
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -d /data/geth/chaindata ]; then
+          echo "Initializing genesis..."
+          geth --datadir /data init /config/genesis.json
+        fi
+        exec geth \
+          --datadir /data \
+          --config /config/config.toml \
+          --syncmode snap \
+          --http --http.addr 0.0.0.0 --http.port 8545 \
+          --http.corsdomain "*" --http.vhosts "*" \
+          --http.api eth,net,web3,txpool \
+          --ws --ws.addr 0.0.0.0 --ws.port 8546 \
+          --ws.origins "*" --ws.api eth,net,web3,txpool \
+          --port 30303 --maxpeers 200 \
+          --metrics --metrics.addr 0.0.0.0 --metrics.port 6060 \
+          --verbosity 3
+
+    healthcheck:
+      test: ["CMD-SHELL", "geth attach /data/geth.ipc --exec 'eth.blockNumber' 2>/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+  # Prometheus metrics scraper (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: bkc-prometheus
+    restart: unless-stopped
+    profiles: ["monitoring"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=15d
+
+volumes:
+  bkc-data:
+    driver: local
+  prometheus-data:
+    driver: local

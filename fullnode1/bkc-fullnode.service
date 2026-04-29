@@ -1,0 +1,49 @@
+[Unit]
+Description=BitkubChain Fullnode #1
+Documentation=https://github.com/kub-chain/bkc-node
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bkc
+Group=bkc
+Restart=on-failure
+RestartSec=5s
+
+ExecStart=/opt/bkc/bin/geth \
+    --datadir /opt/bkc/data \
+    --config /opt/bkc/config/config.toml \
+    --syncmode snap \
+    --http \
+    --http.addr 0.0.0.0 \
+    --http.port 8545 \
+    --http.corsdomain "*" \
+    --http.vhosts "*" \
+    --http.api eth,net,web3,txpool \
+    --ws \
+    --ws.addr 0.0.0.0 \
+    --ws.port 8546 \
+    --ws.origins "*" \
+    --ws.api eth,net,web3,txpool \
+    --port 30303 \
+    --maxpeers 200 \
+    --metrics \
+    --metrics.addr 127.0.0.1 \
+    --metrics.port 6060 \
+    --verbosity 3 \
+    --log.format logfmt
+
+# Allow enough open files for a busy node
+LimitNOFILE=65536
+LimitNPROC=65536
+
+# Keep the process in memory; avoid swapping
+MemorySwapMax=0
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=bkc-fullnode
+
+[Install]
+WantedBy=multi-user.target
