@@ -1,0 +1,49 @@
+[Unit]
+Description=BitkubChain Fullnode #2 (Mainnet)
+Documentation=https://github.com/kub-chain/bkc-node
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bkc
+Group=bkc
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=120s
+
+# Increase open-file limits for a high-peer-count node
+LimitNOFILE=65536
+
+# Set NODE_DIR to match the path used in setup.sh (override via EnvironmentFile if needed)
+EnvironmentFile=-/etc/default/bkc-fullnode-2
+
+ExecStart=/bkc-node/fullnode-2/geth \
+  --datadir /bkc-node/fullnode-2/data \
+  --config /bkc-node/fullnode-2/mainnet/config.toml \
+  --syncmode full \
+  --http \
+  --http.addr 0.0.0.0 \
+  --http.port 8545 \
+  --http.api eth,net,web3,txpool \
+  --http.corsdomain "*" \
+  --http.vhosts "*" \
+  --ws \
+  --ws.addr 0.0.0.0 \
+  --ws.port 8546 \
+  --ws.api eth,net,web3,txpool \
+  --ws.origins "*" \
+  --port 30303 \
+  --maxpeers 200 \
+  --metrics \
+  --metrics.addr 127.0.0.1 \
+  --metrics.port 6060 \
+  --verbosity 3 \
+  --log.format json
+
+# Optional: pipe logs through journald (default) or redirect to a file.
+# StandardOutput=journal
+# StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
