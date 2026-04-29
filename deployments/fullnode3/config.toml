@@ -1,0 +1,94 @@
+[Eth]
+NetworkId = 96
+SyncMode = "full"
+NoPruning = false
+NoPrefetch = false
+LightPeers = 100
+UltraLightFraction = 75
+DatabaseCache = 512
+DatabaseFreezer = ""
+TrieCleanCache = 256
+TrieCleanCacheJournal = "triecache"
+TrieCleanCacheRejournal = 3600000000000
+TrieDirtyCache = 256
+TrieTimeout = 3600000000000
+EnablePreimageRecording = false
+RPCGasCap = 0
+RPCTxFeeCap = 1e+01
+
+[Eth.Miner]
+GasFloor = 90000000
+GasCeil = 90000000
+GasPrice = 25000000000
+Recommit = 3000000000
+Noverify = false
+
+[Eth.TxPool]
+Locals = []
+NoLocals = true
+Journal = "transactions.rlp"
+Rejournal = 3600000000000
+PriceLimit = 25000000000
+PriceBump = 10
+AccountSlots = 16
+GlobalSlots = 10240
+AccountQueue = 128
+GlobalQueue = 4096
+Lifetime = 10800000000000
+
+[Eth.GPO]
+Blocks = 20
+Percentile = 60
+MaxPrice = 500000000000
+
+[Node]
+DataDir = "/bkc-node/mainnet/data"
+IPCPath = "geth.ipc"
+HTTPHost = "0.0.0.0"
+HTTPPort = 8545
+HTTPCors = ["*"]
+HTTPVirtualHosts = ["*"]
+HTTPModules = ["eth", "net", "web3", "txpool"]
+WSHost = "0.0.0.0"
+WSPort = 8546
+WSOrigins = ["*"]
+WSModules = ["eth", "net", "web3", "txpool"]
+GraphQLVirtualHosts = ["localhost"]
+
+[Node.P2P]
+MaxPeers = 200
+NoDiscovery = false
+BootstrapNodes = [
+    "enode://364d92e9b0667f7428653385b99296f61f5a4db1d46834685e9d92c7e8fd6652a383bcf64100a8f92e1944afd63bc7094fb0e47a315fc27dc5b5ab35a09d7887@94.74.118.9:30303",       # TH-REGION 1
+    "enode://f9430f3733b5104415d8742483b671dfe41e1067e762382b8681ddae2664c940f212479a3ee5a6081e4dd6c21c8209b3a5d0317070e55e07abdab35c5b9b1738@110.238.117.147:30303",   # TH-REGION 2
+    "enode://7dc04e2d6161bbad822585c7ab57a6bf008d93f353792b90d363cea698791f06e3481eef39930e4e3215e047457ce06069fd678c038ed34f5b08075becc04e40@119.8.174.182:30303",     # SG-REGION 1
+    "enode://57b546bbdfb751bc8e1fed1adbad4fdeb49d63a09ff95be4b9197f5680d818c430c74148c9f27e175f1d04c3d04c13ddf230f3b52eae2ff7e04cc715386d45c7@94.74.87.63:30303",       # SG-REGION 2
+    "enode://426b0bd86277fddac7b0de179e4f0ecd999c3137da9a2059f5a69cf53add1911f66b79795ad5a70b3976c3f9126fbdf1ec4bda3e30222980d5b67ce4a57889cc@119.8.122.53:30303",      # HK-REGION 1
+    "enode://253e701f41d404ba6ab46885f26f79ad281863618c10b245c6b051b26416b781797cd46b7a501c7b3b64624de35ccad5d9c5c8204fea7103c2e0e18979e5085e@159.138.47.91:30303",     # HK-REGION 2
+]
+BootstrapNodesV5 = [
+    "enode://364d92e9b0667f7428653385b99296f61f5a4db1d46834685e9d92c7e8fd6652a383bcf64100a8f92e1944afd63bc7094fb0e47a315fc27dc5b5ab35a09d7887@94.74.118.9:30303",       # TH-REGION 1
+    "enode://f9430f3733b5104415d8742483b671dfe41e1067e762382b8681ddae2664c940f212479a3ee5a6081e4dd6c21c8209b3a5d0317070e55e07abdab35c5b9b1738@110.238.117.147:30303",   # TH-REGION 2
+    "enode://7dc04e2d6161bbad822585c7ab57a6bf008d93f353792b90d363cea698791f06e3481eef39930e4e3215e047457ce06069fd678c038ed34f5b08075becc04e40@119.8.174.182:30303",     # SG-REGION 1
+    "enode://57b546bbdfb751bc8e1fed1adbad4fdeb49d63a09ff95be4b9197f5680d818c430c74148c9f27e175f1d04c3d04c13ddf230f3b52eae2ff7e04cc715386d45c7@94.74.87.63:30303",       # SG-REGION 2
+    "enode://426b0bd86277fddac7b0de179e4f0ecd999c3137da9a2059f5a69cf53add1911f66b79795ad5a70b3976c3f9126fbdf1ec4bda3e30222980d5b67ce4a57889cc@119.8.122.53:30303",      # HK-REGION 1
+    "enode://253e701f41d404ba6ab46885f26f79ad281863618c10b245c6b051b26416b781797cd46b7a501c7b3b64624de35ccad5d9c5c8204fea7103c2e0e18979e5085e@159.138.47.91:30303",     # HK-REGION 2
+]
+StaticNodes = [
+    "enode://cf494f6ef473cc58da80b5e6428f15b2c0da53b2e3a755c237cc35b56447e5c1ce0059dceed92db9993a5de2bd7338adbaaa4407342c099ea44d904621767549@94.74.113.175:30303",     # TH-REGION 1
+    "enode://97081ded9718763d9cf65a93c05da48e8e0411550919960fced95baa45fe07cb60433ec649474ff555cbae802e51ebe30c8366fb5850ed6ff0990433b1e9f65c@49.0.198.30:30303",       # TH-REGION 2
+    "enode://497a368cc51d452bad84af280be0528344ef665c41856046e6c4976c180d60a53bf30659a4e956dd6145e5fc8c527fbb204fbaa6bbe794f69a1253a33c8018e7@49.0.197.171:30303",      # TH-REGION 3
+    "enode://524167364308287ade7b759a0dc34df969779f6b46190a6d6b951390a6d6810c193e92671d68dea3e107ada879cbb98cf751e556f1a6957f0ed1e06f88382ebe@110.238.105.36:30303",    # SG-REGION 1
+    "enode://17118f4924e3e959ea51f8c3a69dc0155759ef0a41889af9e5c383e95973b5c6cc5b23d8ec21173cc6cc7cfb02793a40bed6763ce82a960f33551485991d1f2d@119.8.186.196:30303",     # SG-REGION 2
+    "enode://542c6fcd287a6451e9ea5c9ebd8f0773cd06b9cdac099b1c4324070806d3ea04ca13c7f2578f5f1e48b71191308573e95f5e81ad62b1786ca612774747de0d4e@119.13.100.48:30303",     # SG-REGION 3
+    "enode://856c401a71d747ed45c4b0a56b79b5a810d105663e6a6f26e58d037d49445970d1701892a184d31c457918ee161e23ea56db5d7b9f51bcfe3da6cf614f9fb3e1@119.13.79.20:30303",      # HK-REGION 1
+    "enode://8ee492ad51666db1a2fc49adbab93975a4417d93afb953f410f80ab774a7da387ac4c7617bdb8298ffe366871c2467eedc0746dc703bcf033cf56d447376754b@119.12.161.198:30303",    # HK-REGION 2
+    "enode://bb604e8a2624fc00680bcbc0a55a98807b230cfb668c628d513866eb9f3c3dcb3f54fc9e777871214ebd76addfefdfbea3281597cd7e90f7d4d8362d6450921b@94.74.108.177:30303",     # HK-REGION 3
+]
+ListenAddr = ":30303"
+EnableMsgEvents = false
+
+[Node.HTTPTimeouts]
+ReadTimeout = 30000000000
+WriteTimeout = 30000000000
+IdleTimeout = 120000000000

@@ -1,0 +1,50 @@
+[Unit]
+Description=BitkubChain Fullnode #3 (Mainnet)
+Documentation=https://github.com/kub-chain/bkc-node
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bkc
+Group=bkc
+Restart=on-failure
+RestartSec=10s
+TimeoutStartSec=300
+
+ExecStart=/opt/bkc-node/geth \
+    --datadir /opt/bkc-node/mainnet/data \
+    --config /opt/bkc-node/mainnet/config.toml \
+    --syncmode full \
+    --http \
+    --http.addr 0.0.0.0 \
+    --http.port 8545 \
+    --http.corsdomain "*" \
+    --http.vhosts "*" \
+    --http.api eth,net,web3,txpool \
+    --ws \
+    --ws.addr 0.0.0.0 \
+    --ws.port 8546 \
+    --ws.origins "*" \
+    --ws.api eth,net,web3,txpool \
+    --port 30303 \
+    --nat extip:$(curl -4 -s ifconfig.me) \
+    --maxpeers 200 \
+    --metrics \
+    --metrics.addr 127.0.0.1 \
+    --metrics.port 6060 \
+    --verbosity 3
+
+# Security hardening
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/bkc-node/mainnet/data
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=65536
+
+[Install]
+WantedBy=multi-user.target

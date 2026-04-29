@@ -1,0 +1,50 @@
+{
+  "config": {
+    "chainId": 96,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "erawanBlock": 5519559,
+    "chaophrayaBlock": 14220246,
+    "lausanneBlock": 25677934,
+    "baselBlock": {
+      "block": 31237946,
+      "superNode": "0xcf723fE5a8118efE70D3fAdd56C5e6D01aDeC7A3",
+      "superNodeOwner": "0x5106ffca7cC44E6cFfEE9bD016A0934130b0322f",
+      "period": 3
+    },
+    "clique": {
+      "span": 50,
+      "period": 5,
+      "epoch": 300,
+      "validatorContract": "0x61fAde2541dD13e855034346B4cA3576AB453FeC"
+    }
+  },
+  "nonce": "0x0",
+  "timestamp": "0x6088ff55",
+  "extraData": "0x000000000000000000000000000000000000000000000000000000000000000060f3e18989052607cf0a1465768855e835a8be46b4a2774135d80fe41e6490f5c5139692f4d03e20f70597d0d39793d0639c22f61a627c174459b8560000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "gasLimit": "0x1C9C380",
+  "difficulty": "0x1",
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "alloc": {
+    "6a8402b98528edcd59ce1f7f1c4f752637f11d50": {
+      "balance": "0x84595161401484A000000"
+    },
+    "8d4ad819809f522bc4d6d5aee4286293af9d1c1d": {
+      "balance": "0x32AA31273A87DAC54000000"
+    },
+    "ee4464a2055d2346facf7813e862b92ffa91dcae": {
+      "balance": "0x84595161401484A000000"
+    }
+  },
+  "number": "0x0",
+  "gasUsed": "0x0",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+}
